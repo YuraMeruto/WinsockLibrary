@@ -2,7 +2,6 @@
 #include<string>
 #include <stdio.h>
 #include <winsock2.h>
-#include<winsock.h>
 #include<stdlib.h>
 #include<WS2tcpip.h>
 #include<tchar.h>
@@ -13,12 +12,14 @@ class Winsock
 private:
 	WSADATA wsadata;
 	sockaddr_in server,client,local;
+	struct in_addr local_addr;
 	SOCKET sendsocket,tcpsocket;
+	DWORD dwSize;
 	PHOSTENT localhostnet;//ローカルホスト
 	struct	hostent *hs;
 	char localhostipadress[16];//自分のアドレス;
 	char LocalHostName[256];
-
+	struct addrinfo *hint,*res;
 public:
 	
 	Winsock(int x,int y)
@@ -46,11 +47,9 @@ void GetMyIPAdress()
 {
 	IN_ADDR in;
 	gethostname(LocalHostName,sizeof(LocalHostName));
-	if ((localhostnet = gethostbyname(LocalHostName)) != NULL)
-	{
-		memcpy(&in, localhostnet->h_addr, 4);
-		wsprintf(localhostipadress,inet_ntoa(in));
-	}
+	getaddrinfo(LocalHostName,NULL,hint,&res);
+	dwSize = sizeof(LocalHostName);
+	std::cout << res->ai_addr<<std::endl;
 //	std::cout << in.S_un.S_addr << std::endl;
 	//std::cout << LocalHostName << std::endl;
 //	localhostnet = gethostbyname(LocalHostName);
