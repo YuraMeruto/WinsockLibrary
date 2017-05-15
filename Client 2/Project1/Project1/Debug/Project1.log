@@ -1,3 +1,5 @@
 ﻿  main.cpp
-  Project1.vcxproj -> C:\Users\マサキ\Desktop\Winscok\Client 2\Project1\Debug\Project1.exe
-  Project1.vcxproj -> C:\Users\マサキ\Desktop\Winscok\Client 2\Project1\Debug\Project1.pdb (Partial PDB)
+c:\winsocklibrary\client 2\project1\project1\test.h(49): error C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(2238): note: 'gethostbyname' の宣言を確認してください
+c:\winsocklibrary\client 2\project1\project1\test.h(52): error C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868): note: 'inet_ntoa' の宣言を確認してください

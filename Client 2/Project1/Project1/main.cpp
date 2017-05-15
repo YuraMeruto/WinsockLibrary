@@ -3,10 +3,15 @@
 #include<winsock.h>
 #include<stdlib.h>
 #include<WS2tcpip.h>
+#include"Test.h"
 //配列の場所渡し
 int
 main()
 {
+	Winsock win =  Winsock(2,0);
+	win.GetMyIPAdress();
+	system("pause");
+	/*
 	WSADATA wsaData;
 	struct sockaddr_in server;
 	SOCKET sock;
@@ -28,8 +33,7 @@ main()
 
 	// サーバからデータを受信
 	memset(buf, 0, sizeof(buf));
-	int n = recv(sock, buf, sizeof(buf), 0);
-
+	int n = recv(sock, buf, sizeof(buf),0);
 
 	printf("%d, %s\n", n, buf);
 
@@ -37,4 +41,5 @@ main()
 	WSACleanup();
 	system("pause");
 	return 0;
+	*/
 }
