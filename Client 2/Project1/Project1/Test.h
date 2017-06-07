@@ -16,9 +16,10 @@ private:
 	SOCKET sendsocket,tcpsocket;
 	DWORD dwSize;
 	PHOSTENT localhostnet;//ローカルホスト
+	LPADDRINFO lpAddrInfo;
 	struct	hostent *hs;
 	char localhostipadress[16];//自分のアドレス;
-	char LocalHostName[256];
+	char LocalHostName[256];//ホスト名
 	struct addrinfo *hint,*res;
 public:
 	
@@ -45,17 +46,19 @@ void TCPRecv(int num,char *recvbuf)
 
 void GetMyIPAdress()
 {
-	IN_ADDR in;
-	gethostname(LocalHostName,sizeof(LocalHostName));
-	getaddrinfo(LocalHostName,NULL,hint,&res);
-	dwSize = sizeof(LocalHostName);
-	std::cout << res->ai_addr<<std::endl;
-//	std::cout << in.S_un.S_addr << std::endl;
-	//std::cout << LocalHostName << std::endl;
-//	localhostnet = gethostbyname(LocalHostName);
 
-//	wsprintf(localhostipadress,inet_ntoa(in));
+	IN_ADDR in;
+	gethostname(LocalHostName,(int)sizeof(LocalHostName));
+	
+	gethostname(LocalHostName,sizeof(LocalHostName));
+	 getaddrinfo(LocalHostName, NULL , hint, &res);
+	dwSize = sizeof(LocalHostName);
+	std::cout << LocalHostName << std::endl;
+	///strcpy(localhostipadress,inet_ntoa(in));
+	//inet_ntop(AF_INET, (PVOID)in.S_un.S_addr, localhostipadress, sizeof(localhostipadress));
+
 }
+
 
 
 };
