@@ -3,13 +3,14 @@
 #include<winsock.h>
 #include<stdlib.h>
 #include<WS2tcpip.h>
+//#include<thread.h>
 #include"Test.h"
 //”z—ñ‚ÌêŠ“n‚µ
-int
-main()
+int main()
 {
+
 	Winsock win =  Winsock(2,0);
-	win.GetMyIPAdress();
+	//win.GetMyIPAdress();
 	system("pause");
 	/*
 	WSADATA wsaData;
