@@ -37,7 +37,6 @@ public:
 		server.sin_port = htons(PortNumber);
 		connect(tcpsocket, (sockaddr *)&server, sizeof(server));
 	}
-
 	void TCPRecv(int num, char *recvbuf)
 	{
 		memset(recvbuf, 0, sizeof(recvbuf));
@@ -46,6 +45,7 @@ public:
 
 	void GetMyIPAdress()
 	{
+		/*
 		IN_ADDR in;
 		socklen_t salen = NULL;
 		gethostname(LocalHostName, sizeof(LocalHostName));
@@ -54,6 +54,6 @@ public:
 		std::cout << res->ai_addr << std::endl;
 		std::cout << res << std::endl;
 		getnameinfo((sockaddr FAR *)&local, salen, localhostipadress, dwSize, localhostipadress, dwSize, 0);
-
+		*/
 	}
 };
