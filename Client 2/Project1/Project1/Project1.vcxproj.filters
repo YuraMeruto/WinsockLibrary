@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Test.h">
+    <ClInclude Include="WinSock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
