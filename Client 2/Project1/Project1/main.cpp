@@ -1,20 +1,14 @@
-//#include <stdio.h>
-//#include <winsock2.h>
-//#include<winsock.h>
-//#include<stdlib.h>
-//#include<WS2tcpip.h>
-//#include<thread.h>
-
 #include"WinSock.h"
 //”z—ñ‚ÌêŠ“n‚µ
 int main()
 {
 	Winsock win =  Winsock(2,0);
 	win.TCPInstanceSocet();
-	int PortNumber =12345;
-	win.TCPServerConect("127.0.0.1",PortNumber);
+	win.portnumber = 11111;
+	win.TCPServerConect("127.0.0.1");
 	win.TCPFromServerRecv();
-	win.PrintRecv();
+
+//	win.PrintRecv();
 	system("pause");
 }
 

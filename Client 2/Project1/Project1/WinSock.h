@@ -23,46 +23,47 @@ private:
 	struct addrinfo hint, *res;
 	char RecvBuf[1000];
 public:
+	int portnumber = 12345;
+public:
 
 	Winsock(int x, int y)
 	{
 		WSAStartup(MAKEWORD(x, y), &wsadata);
 	}
-
-	void TCPServerConect(std::string ServerIPAdress, int PortNumber)
+	void TCPInstanceSocet()
 	{
-		tcpsocket = socket(AF_INET, SOCK_STREAM, 0);
+		Instancesock = socket(AF_INET, SOCK_STREAM, 0);
+	}
+	void TCPBindSock()
+	{
+		bind(Instancesock, (struct sockaddr *)&local_addr, sizeof(local_addr));
+	}
+	void TCPServerConect(std::string ServerIPAdress)
+	{
 		inet_pton(AF_INET, ServerIPAdress.c_str(), &server.sin_addr);
 		server.sin_family = AF_INET;
-		server.sin_port = htons(PortNumber);
-		connect(tcpsocket, (sockaddr *)&server, sizeof(server));
+		server.sin_port = htons(portnumber);
+		connect(Instancesock, (sockaddr *)&server, sizeof(server));
 	}
 	void TCPFromServerRecv()
 	{
 		memset(RecvBuf, 0, sizeof(RecvBuf));
-		recv(tcpsocket, RecvBuf, sizeof(RecvBuf), 0);
+		recv(Instancesock, RecvBuf, sizeof(RecvBuf), 0);
 	}
 
-	void GetMyIPAdress()
+	void TCPSendSocekt(std::string sendstring)
 	{
-		/*
-		IN_ADDR in;
-		socklen_t salen = NULL;
-		gethostname(LocalHostName, sizeof(LocalHostName));
-		getaddrinfo(LocalHostName, NULL, &hint, &res);
-		dwSize = sizeof(LocalHostName);
-		std::cout << res->ai_addr << std::endl;
-		std::cout << res << std::endl;
-		getnameinfo((sockaddr FAR *)&local, salen, localhostipadress, dwSize, localhostipadress, dwSize, 0);
-		*/
+		send(Instancesock,sendstring.c_str(),sizeof(sendstring),0);
 	}
 
-	void TCPInstanceSocet()
+	void SocketDestroy()
 	{
-		Instancesock = socket(AF_INET,SOCK_STREAM,0);	
+		delete this;
 	}
+
 	void PrintRecv()
 	{
 		std::cout << RecvBuf << std::endl;
 	}
+
 };
